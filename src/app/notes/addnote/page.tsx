@@ -9,6 +9,7 @@ export default function AddNote() {
 	const router = useRouter();
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
+	const [succes, setSucces] = useState(false);
 
 	const createNote = async () => {
 		const res = await fetch('http://127.0.0.1:8090/api/collections/todo/records', {
@@ -22,10 +23,14 @@ export default function AddNote() {
 		if (!res.ok) {
 			throw new Error(`HTTP ERROR: ${res.status}`);
 		}
+		setSucces(true);
 		setTitle('');
 		setContent('');
 		console.log(res)
-		// router.refresh();
+		setTimeout(() => {
+			router.refresh();;
+		  }, 3000);
+
 	}
 	console.log("Title: ", title);
 	console.log("Content: ", content);
@@ -34,6 +39,7 @@ export default function AddNote() {
 		<div className='bg-gray-200 rounded py-4 text-center m-12'>
 		<form className="flex flex-col space-y-4"
 		onSubmit={createNote}>
+			{succes && <h1 className="text-green-500">Note added successfully!</h1>}
 				<h1 className="font-bold">Title</h1>
 				<input
 					className='rounded-sm m-4 px-2 py-4'
