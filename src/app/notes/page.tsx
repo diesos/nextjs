@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import styles from './Notes.module.css';
 import moment from 'moment';
-import { deleteNote } from './deleteNote';
+import deleteNote from './deleteNote';
 
 async function getNotes() {
 
