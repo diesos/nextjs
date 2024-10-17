@@ -1,13 +1,13 @@
 'use client'
 import { useState } from 'react';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { toast } from 'react-hot-toast';
 import ShimmerButton from '../../components/ui/Button';
 
 
 export default function AddNote() {
 
-	// const router = useRouter();
+	const router = useRouter();
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
 	const [succes, setSucces] = useState(true);
@@ -27,6 +27,7 @@ export default function AddNote() {
 			setSucces(false);
 		}
 		setSucces(true);
+		router.push('/notes');
 		toast.success('Note added successfully!',
 			{
 				duration: 2000,

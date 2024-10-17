@@ -2,7 +2,6 @@
 import dynamic from 'next/dynamic';
 import React, { Suspense } from 'react';
 import Link from 'next/link';
-// import styles from './Notes.module.css';
 import moment from 'moment';
 import deleteNote from './deleteNote';
 import { useState, useEffect } from 'react';
@@ -51,8 +50,8 @@ export default function NotesPages() {
 
   const handleDeleteNote = async (id) => {
     try {
-      await deleteNote(id); // Suppression dans la base de données
-      setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id)); // Suppression dans l'état local
+      await deleteNote(id);
+      setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
       console.log(`Note with id ${id} deleted`);
     } catch (error) {
       console.error('Failed to delete note:', error);
@@ -63,10 +62,10 @@ export default function NotesPages() {
     <>
       <h1 className="text-center p-5 font-black text-[34px] lg:text-left">Notes</h1>
       <div className="flex flex-col gap-2 sm:flex-row flex-wrap p-4">
-        <SpotlightCard
-        key={notes.id}
-        notes={notes}
-        onDelete={handleDeleteNote}
+      <SpotlightCard
+          key={notes.id}
+          notes={notes}
+          onDelete={handleDeleteNote}
       />
       </div>
     </>

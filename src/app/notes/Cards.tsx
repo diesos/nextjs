@@ -14,10 +14,16 @@ interface CardData {
   notes?: object[];
 }
 
+interface SingleCardProps {
+  note: CardData;
+  onDelete?: (id: string) => void;
+}
+
 interface SpotlightCardProps {
   cards: CardData[];
   onDelete?: (id: string) => void;
 }
+
 
 const SpotlightItem: React.FC<CardData> = ({ note, onDelete }) => {
 	const { id, title, content, created } = note || {};
@@ -54,7 +60,7 @@ const SpotlightItem: React.FC<CardData> = ({ note, onDelete }) => {
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,.25), transparent 40%)`,
         }}
       />
-      <TiDeleteOutline className="absolute top-4 right-4 text-neutral-100 text-2xl" onClick={() => onDelete(id)} />
+      {onDelete && <TiDeleteOutline className="absolute top-4 right-4 text-neutral-100 text-2xl cursor-pointer" onClick={() => onDelete(id)} />}
       <h3 className="mb-2 font-medium text-neutral-100 uppercase">
         {title}
       </h3>
@@ -89,12 +95,12 @@ export const  SpotlightCard: React.FC<SpotlightCardProps> = ({ notes, onDelete }
 };
 
 
-export const  SoloCard: React.FC<SpotlightCardProps> = ({ notes }) => {
+export const  SoloCard: React.FC<SingleCardProps> = ({ note, onDelete}) => {
   return (
     <div className="flex flex-wrap justify-center gap-4">
           <SpotlightItem
-            key={notes.id || 0}
-            notes={notes}
+            note={note}
+            onDelete={onDelete}
           />
     </div>
   );
