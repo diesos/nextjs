@@ -27,7 +27,7 @@ const items = [
   {
     link: '/',
     Icon: <FaHome size={22} />,
-    defaultBgColor: 'bg-gray-200',
+    defaultBgColor: 'bg-white',
     hoverBgColor: 'bg-slate-300',
     tooltip: 'Home',
   },
