@@ -75,7 +75,7 @@ const Dock = ({ className = '', items = [], position = 'bottom' }: DockProps) =>
         let ref = useRef<HTMLDivElement>(null);
         const [hovered, setHovered] = useState(false);
 
-        const distance;
+        let distance;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (position === 'top' || position === 'bottom') {
           distance = useTransform(mouseX, (val) => {
