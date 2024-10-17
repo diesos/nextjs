@@ -7,6 +7,7 @@ import moment from "moment";
 import { FaRegClock } from "react-icons/fa";
 
 interface CardData {
+  id: string;
   title: string;
   content: string;
   created: string;
@@ -86,7 +87,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
     <div className="flex flex-wrap justify-center gap-4">
       {notes.length > 0 ? (
         notes.map((note) => (
-          <SpotlightItem key={note.id} note={note} onDelete={onDelete} />
+          <SpotlightItem key={note.id} notes={note} onDelete={onDelete} />
         ))
       ) : (
         <p>No cards available or loading...</p>
@@ -98,7 +99,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
 export const SoloCard: React.FC<SingleCardProps> = ({ note, onDelete }) => {
   return (
     <div className="flex flex-wrap justify-center gap-4">
-      <SpotlightItem note={note} onDelete={onDelete} />
+      <SpotlightItem notes={note} onDelete={onDelete} />
     </div>
   );
 };

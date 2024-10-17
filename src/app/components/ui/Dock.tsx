@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client';
 
 import React, { useRef, useState } from 'react';
@@ -7,7 +6,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 const cn = (...args: any[]) => {
   return twMerge(clsx(args));
 };
@@ -24,10 +23,10 @@ interface DockProps {
   }[];
   position?: 'left' | 'right' | 'top' | 'bottom';
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 const Dock = ({ className = '', items = [], position = 'bottom' }: DockProps) => {
-  const mouseX = useMotionValue(Infinity);
-  const mouseY = useMotionValue(Infinity);
+  let mouseX = useMotionValue(Infinity);
+  let mouseY = useMotionValue(Infinity);
 
   const containerStyles = {
     left: 'left-0 ml-2 top-1/2 transform -translate-y-1/2',
@@ -71,26 +70,24 @@ const Dock = ({ className = '', items = [], position = 'bottom' }: DockProps) =>
       )}
     >
       {items.map((item, index) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let ref = useRef<HTMLDivElement>(null);
         const [hovered, setHovered] = useState(false);
 
         let distance;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (position === 'top' || position === 'bottom') {
           distance = useTransform(mouseX, (val) => {
-            const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+            let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
             return val - bounds.x - bounds.width / 2;
           });
         } else {
           distance = useTransform(mouseY, (val) => {
-            const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
+            let bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
             return val - bounds.y - bounds.height / 2;
           });
         }
 
-        const scaleSync = useTransform(distance, [-150, 0, 150], [0.8, 1.2, 0.8]);
-        const scale = useSpring(scaleSync, { mass: 0.1, stiffness: 150, damping: 12 });
+        let scaleSync = useTransform(distance, [-150, 0, 150], [0.8, 1.2, 0.8]);
+        let scale = useSpring(scaleSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
         // Tooltip position classes (You will need to adjust this based on the title size of your tooltip)
         const tooltipPositionClasses = {

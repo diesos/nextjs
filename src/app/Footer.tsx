@@ -4,17 +4,17 @@ import { Facebook, Twitter, Linkedin, Github } from "lucide-react";
 
 // Chnage this with your own data
 const defaultNavigationLinks = [
-  { href: "#", label: "About Us" },
-  { href: "#", label: "Services" },
-  { href: "#", label: "Blog" },
-  { href: "#", label: "Contact" },
+  { href: "#1", label: "About Us" },
+  { href: "#2", label: "Services" },
+  { href: "#3", label: "Blog" },
+  { href: "#4", label: "Contact" },
 ];
 
 const defaultSocialLinks = [
-  { href: "#", icon: <Facebook size={24} />, hoverColor: "text-gray-600" },
-  { href: "#", icon: <Twitter size={24} />, hoverColor: "text-gray-600" },
-  { href: "#", icon: <Linkedin size={24} />, hoverColor: "text-gray-600" },
-  { href: "#", icon: <Github size={24} />, hoverColor: "text-gray-600" },
+  { href: "#5", icon: <Facebook size={24} />, hoverColor: "text-gray-600" },
+  { href: "#6", icon: <Twitter size={24} />, hoverColor: "text-gray-600" },
+  { href: "#7", icon: <Linkedin size={24} />, hoverColor: "text-gray-600" },
+  { href: "#8", icon: <Github size={24} />, hoverColor: "text-gray-600" },
 ];
 
 const FooterThird = ({

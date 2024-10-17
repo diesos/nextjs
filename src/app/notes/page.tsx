@@ -1,13 +1,9 @@
 'use client';
-import dynamic from 'next/dynamic';
 import React, { Suspense } from 'react';
-import Link from 'next/link';
 import moment from 'moment';
 import deleteNote from './deleteNote';
 import { useState, useEffect } from 'react';
 import { SpotlightCard } from './Cards';
-import Loading from '../loading'
-import { TiDeleteOutline } from "react-icons/ti";
 
 
 
@@ -63,29 +59,10 @@ export default function NotesPages() {
       <h1 className="text-center p-5 font-black text-[34px] lg:text-left">Notes</h1>
       <div className="flex flex-col gap-2 sm:flex-row flex-wrap p-4">
       <SpotlightCard
-          key={notes.id}
           notes={notes}
           onDelete={handleDeleteNote}
       />
       </div>
     </>
-  );
-}
-
-function Note({ note, onDelete }: any) {
-  const { id, title, content, created } = note || {};
-
-  return (
-    <div className={styles.note}>
-      <div className="flex justify-between">
-        <p className={`${styles.title} m-4`}>{title ? title : 'No title'}</p>
-        <button className="font-sans" onClick={() => onDelete(id)}>[ X ]</button>
-      </div>
-      <Link href={`/notes/${id}`}>
-        <hr className="border-black rounded m-4 mt-[-1rem]" />
-        <h5 className={`${styles.content} m-4`}>{content ? content : 'No content'}</h5>
-        <p className={styles.created}>{formatDate(created)}</p>
-      </Link>
-    </div>
   );
 }
