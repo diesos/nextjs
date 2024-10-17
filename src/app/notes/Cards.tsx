@@ -25,7 +25,7 @@ interface SpotlightCardProps {
 }
 
 const SpotlightItem: React.FC<CardData> = ({ notes, onDelete }) => {
-  const { id, title, content, created } = notes || {};
+  const { id , title, content, created } = notes;
   const divRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const controls = useAnimation();

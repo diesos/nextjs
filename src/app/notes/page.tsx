@@ -44,7 +44,7 @@ export default function NotesPages() {
     fetchNotes();
   }, []);
 
-  const handleDeleteNote = async (id) => {
+  const handleDeleteNote = async (id: string) => {
     try {
       await deleteNote(id);
       setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
