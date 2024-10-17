@@ -26,10 +26,9 @@ const geistMono = localFont({
 const items = [
   {
     link: '/',
-    target: '_blank',
     Icon: <FaHome size={22} />,
     defaultBgColor: 'bg-gray-200',
-    hoverBgColor: 'bg-zinc-700',
+    hoverBgColor: 'bg-stone-400',
     tooltip: 'Home',
   },
   {
