@@ -11,12 +11,11 @@ interface CardData {
   title: string;
   content: string;
   created: string;
-  notes?: object[];
 }
 
 interface SingleCardProps {
   note: CardData;
-  onDelete?: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 interface SpotlightCardProps {
@@ -24,13 +23,13 @@ interface SpotlightCardProps {
   onDelete?: (id: string) => void;
 }
 
-const SpotlightItem: React.FC<CardData> = ({ notes, onDelete }) => {
-  const { id , title, content, created } = notes;
+const SpotlightItem: React.FC<SingleCardProps> = ({ note, onDelete }) => {
+  const { id, title, content, created } = note;
   const divRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const controls = useAnimation();
 
-  function formatDate(created) {
+  function formatDate(created: string) {
     return moment(created).format("DD/MM/YYYY HH:mm");
   }
 
@@ -87,7 +86,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
     <div className="flex flex-wrap justify-center gap-4">
       {notes.length > 0 ? (
         notes.map((note) => (
-          <SpotlightItem key={note.id} notes={note} onDelete={onDelete} />
+          <SpotlightItem key={note.id} note={note} onDelete={onDelete!} />
         ))
       ) : (
         <p>No cards available or loading...</p>
@@ -99,7 +98,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
 export const SoloCard: React.FC<SingleCardProps> = ({ note, onDelete }) => {
   return (
     <div className="flex flex-wrap justify-center gap-4">
-      <SpotlightItem notes={note} onDelete={onDelete} />
+      <SpotlightItem note={note} onDelete={onDelete} />
     </div>
   );
 };

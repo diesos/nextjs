@@ -1,13 +1,17 @@
 'use client';
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import moment from 'moment';
 import deleteNote from './deleteNote';
-import { useState, useEffect } from 'react';
 import { SpotlightCard } from './Cards';
 
+interface Note {
+  id: string;
+  title: string;
+  content: string;
+  created: string;
+}
 
-
-async function getNotes() {
+async function getNotes(): Promise<Note[]> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/api/collections/todo/records?page=1&perPage=30`, {
       headers: {
@@ -20,21 +24,25 @@ async function getNotes() {
       throw new Error(`HTTP ERROR: ${res.status}`);
     }
 
-    const data: { items: unknown[] } = await res.json();
-    console.log('Data from API:', data);
-    return data?.items as unknown[];
+    const data = await res.json();
+    return data?.items.map((item: any) => ({
+      id: item.id,
+      title: item.title,
+      content: item.content,
+      created: item.created,
+    })) as Note[];
   } catch (error) {
     console.error('Error fetching notes:', error);
     return [];
   }
 }
 
-function formatDate(created) {
+function formatDate(created: string) {
   return moment(created).format('DD/MM/YYYY HH:mm:ss');
 }
 
 export default function NotesPages() {
-  const [notes, setNotes] = useState<unknown[]>([]);
+  const [notes, setNotes] = useState<Note[]>([]);
 
   useEffect(() => {
     async function fetchNotes() {
@@ -58,10 +66,10 @@ export default function NotesPages() {
     <>
       <h1 className="text-center p-5 font-black text-[34px] lg:text-left">Notes</h1>
       <div className="flex flex-col gap-2 sm:flex-row flex-wrap p-4">
-      <SpotlightCard
+        <SpotlightCard
           notes={notes}
           onDelete={handleDeleteNote}
-      />
+        />
       </div>
     </>
   );

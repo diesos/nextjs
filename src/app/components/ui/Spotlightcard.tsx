@@ -28,7 +28,6 @@ const SpotlightItem: React.FC<CardData> = ({ title, description, icon }) => {
   const handleMouseLeave = () => controls.start({ opacity: 0 });
 
   return (
-    <Link href={`/notes/${id}`}>
     <div
       ref={divRef}
       onMouseMove={handleMouseMove}
@@ -54,7 +53,6 @@ const SpotlightItem: React.FC<CardData> = ({ title, description, icon }) => {
         {description}
       </p>
     </div>
-    </Link>
   );
 };
 
