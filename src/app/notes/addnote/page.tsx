@@ -43,7 +43,7 @@ export default function AddNote() {
 	console.log("Content: ", content);
 
 	return (
-		<div className='border-black border-2 rounded-lg py-4 text-center m-12 px-6 mt-24'>
+		<div className='border-black max-sm:w-[80%] m-auto border-2 rounded-lg py-4 text-center px-6 mt-24 w-6/12 '>
 		<form className="flex flex-col space-y-4"
 		onSubmit={createNote}>
 			{!succes && <p className="text-red-500">Failed to add note</p>}
