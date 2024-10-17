@@ -4,6 +4,8 @@ import styles from './Notes.module.css';
 import moment from 'moment';
 import deleteNote from './deleteNote';
 import { useState, useEffect } from 'react';
+import { SpotlightCard } from './Cards';
+
 
 async function getNotes() {
   try {
@@ -54,11 +56,13 @@ export default function NotesPages() {
 
   return (
     <>
-      <h1 className={styles.pageTitle}>Notes</h1>
-      <div className="flex flex-col gap-2 sm:flex-row flex-wrap">
-        {notes?.map((note) => (
-          <Note key={note.id} note={note} onDelete={handleDeleteNote} />
-        ))}
+      <h1 className="text-center p-5 font-black text-[34px] lg:text-left">Notes</h1>
+      <div className="flex flex-col gap-2 sm:flex-row flex-wrap p-4">
+        <SpotlightCard
+        key={notes.id}
+        notes={notes}
+        onDelete={handleDeleteNote}
+      />
       </div>
     </>
   );

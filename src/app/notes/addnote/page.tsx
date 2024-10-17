@@ -4,7 +4,7 @@ import { duration } from 'moment';
 import { useState } from 'react';
 // import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-
+import ShimmerButton from '../../components/ui/Button';
 
 
 export default function AddNote() {
@@ -43,7 +43,7 @@ export default function AddNote() {
 	console.log("Content: ", content);
 
 	return (
-		<div className='bg-gray-200 rounded py-4 text-center m-12'>
+		<div className='bg-[#98A0A9] rounded-lg py-4 text-center m-12 px-6'>
 		<form className="flex flex-col space-y-4"
 		onSubmit={createNote}>
 				<h1 className="font-bold">Title</h1>
@@ -61,7 +61,11 @@ export default function AddNote() {
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
 				/>
-			<button className="rounded bg-blue-500 transition ease-out hover:bg-cyan-200 m-4 text-white font-bold px-2 py-4" type="submit">Add Note</button>
+			<ShimmerButton
+			type="submit"
+			props="Add"
+			/>
+			{/* <button className="rounded bg-blue-500 transition ease-out hover:bg-cyan-200 m-4 text-white font-bold px-2 py-4" type="submit">Add Note</button> */}
 		</form>
 		</div>
 	);

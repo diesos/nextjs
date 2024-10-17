@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../Notes.module.css'
+import { SoloCard } from '../Cards';
 
 async function getNote(noteId: string) {
 	try{
@@ -28,6 +29,11 @@ export default async function NotePage({ params }: any) {
 
 	return (
 	  <div>
+		<SoloCard
+			key={id}
+			note={note}
+		/>
+
 		<h1 className={styles.pageTitle}>notes/{id}</h1>
 		<div className={styles.note}>
 		  <h3 className={styles.title}>{title}</h3>
