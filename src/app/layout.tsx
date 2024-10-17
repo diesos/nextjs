@@ -5,10 +5,9 @@ import { Toaster } from "react-hot-toast";
 import { FaHome } from 'react-icons/fa';
 import { FaRegNoteSticky } from "react-icons/fa6";
 import { RiStickyNoteAddLine } from "react-icons/ri";
-import FooterThird from "./footer";
+import FooterThird from "./Footer";
+import Dock from './components/ui/Dock';
 
-
-import Dock from './components/ui/dock';
 
 
 

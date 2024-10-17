@@ -1,11 +1,10 @@
-'use client'
-import React, { useRef, useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import Link from 'next/link';
+"use client";
+import React, { useRef, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import Link from "next/link";
 import { TiDeleteOutline } from "react-icons/ti";
-import moment from 'moment';
-import { FaRegClock } from 'react-icons/fa';
-
+import moment from "moment";
+import { FaRegClock } from "react-icons/fa";
 
 interface CardData {
   title: string;
@@ -20,19 +19,18 @@ interface SingleCardProps {
 }
 
 interface SpotlightCardProps {
-  cards: CardData[];
+  notes: CardData[];
   onDelete?: (id: string) => void;
 }
 
-
-const SpotlightItem: React.FC<CardData> = ({ note, onDelete }) => {
-	const { id, title, content, created } = note || {};
+const SpotlightItem: React.FC<CardData> = ({ notes, onDelete }) => {
+  const { id, title, content, created } = notes || {};
   const divRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const controls = useAnimation();
 
   function formatDate(created) {
-    return moment(created).format('DD/MM/YYYY HH:mm');
+    return moment(created).format("DD/MM/YYYY HH:mm");
   }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -60,32 +58,35 @@ const SpotlightItem: React.FC<CardData> = ({ note, onDelete }) => {
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,.25), transparent 40%)`,
         }}
       />
-      {onDelete && <TiDeleteOutline className="absolute top-4 right-4 text-neutral-100 text-2xl cursor-pointer" onClick={() => onDelete(id)} />}
-      <h3 className="mb-2 font-medium text-neutral-100 uppercase">
-        {title}
-      </h3>
+      {onDelete && (
+        <TiDeleteOutline
+          className="absolute top-4 right-4 text-neutral-100 text-2xl cursor-pointer"
+          onClick={() => onDelete(id)}
+        />
+      )}
+      <h3 className="mb-2 font-medium text-neutral-100 uppercase">{title}</h3>
       <Link href={`/notes/${id}`}>
-      <p className="text-sm text-neutral-400 mb-12 mt-12 font-bold text-xl">
-        {content}
-      </p>
-      <div className="text-sm text-neutral-400 mt-4 font-mono mb-[-1em] text-right">
-      <FaRegClock className='text-sm text-neutral-400 mt-4 font-mono mb-[-1em] m-24'/> {formatDate(created)}
-      </div>
+        <p className="text-sm text-neutral-400 mb-12 mt-12 font-bold text-xl">
+          {content}
+        </p>
+        <div className="text-sm text-neutral-400 mt-4 font-mono mb-[-1em] text-right">
+          <FaRegClock className="text-sm text-neutral-400 mt-4 font-mono mb-[-1em] m-24" />{" "}
+          {formatDate(created)}
+        </div>
       </Link>
     </div>
   );
 };
 
-export const  SpotlightCard: React.FC<SpotlightCardProps> = ({ notes, onDelete }) => {
+export const SpotlightCard: React.FC<SpotlightCardProps> = ({
+  notes,
+  onDelete,
+}) => {
   return (
     <div className="flex flex-wrap justify-center gap-4">
       {notes.length > 0 ? (
         notes.map((note) => (
-          <SpotlightItem
-            key={note.id}
-            note={note}
-            onDelete={onDelete}
-          />
+          <SpotlightItem key={note.id} note={note} onDelete={onDelete} />
         ))
       ) : (
         <p>No cards available or loading...</p>
@@ -94,16 +95,10 @@ export const  SpotlightCard: React.FC<SpotlightCardProps> = ({ notes, onDelete }
   );
 };
 
-
-export const  SoloCard: React.FC<SingleCardProps> = ({ note, onDelete}) => {
+export const SoloCard: React.FC<SingleCardProps> = ({ note, onDelete }) => {
   return (
     <div className="flex flex-wrap justify-center gap-4">
-          <SpotlightItem
-            note={note}
-            onDelete={onDelete}
-          />
+      <SpotlightItem note={note} onDelete={onDelete} />
     </div>
   );
 };
-
-
