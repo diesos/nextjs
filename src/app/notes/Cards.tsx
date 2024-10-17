@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import Link from 'next/link';
 import { TiDeleteOutline } from "react-icons/ti";
+import moment from 'moment';
+import { FaRegClock } from 'react-icons/fa';
 
 
 interface CardData {
@@ -22,6 +24,10 @@ const SpotlightItem: React.FC<CardData> = ({ note, onDelete }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const controls = useAnimation();
+
+  function formatDate(created) {
+    return moment(created).format('DD/MM/YYYY HH:mm');
+  }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!divRef.current) return;
@@ -48,19 +54,17 @@ const SpotlightItem: React.FC<CardData> = ({ note, onDelete }) => {
           background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,.25), transparent 40%)`,
         }}
       />
-      <div className="mb-4">
-	  {onDelete && <TiDeleteOutline className='font-white' onClick={() => onDelete(id)} />}
-      </div>
-      <h3 className="mb-2 font-medium text-neutral-100">
+      <TiDeleteOutline className="absolute top-4 right-4 text-neutral-100 text-2xl" onClick={() => onDelete(id)} />
+      <h3 className="mb-2 font-medium text-neutral-100 uppercase">
         {title}
       </h3>
       <Link href={`/notes/${id}`}>
-      <p className="text-sm text-neutral-400">
+      <p className="text-sm text-neutral-400 mb-12 mt-12 font-bold text-xl">
         {content}
       </p>
-      <p className="text-sm text-neutral-400">
-        {created}
-      </p>
+      <div className="text-sm text-neutral-400 mt-4 font-mono mb-[-1em] text-right">
+      <FaRegClock className='text-sm text-neutral-400 mt-4 font-mono mb-[-1em] m-24'/> {formatDate(created)}
+      </div>
       </Link>
     </div>
   );
@@ -78,7 +82,7 @@ export const  SpotlightCard: React.FC<SpotlightCardProps> = ({ notes, onDelete }
           />
         ))
       ) : (
-        <p>No cards available</p>
+        <p>No cards available or loading...</p>
       )}
     </div>
   );

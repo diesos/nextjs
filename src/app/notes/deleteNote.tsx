@@ -1,7 +1,7 @@
 import toast from "react-hot-toast";
 
 export default async function deleteNote(noteId: string){
-	const res = await fetch(`http://127.0.0.1:8090/api/collections/todo/records/${noteId}`, {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}api/collections/todo/records/${noteId}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',

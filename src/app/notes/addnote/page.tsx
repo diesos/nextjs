@@ -1,6 +1,4 @@
 'use client'
-
-import { duration } from 'moment';
 import { useState } from 'react';
 // import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
@@ -12,11 +10,11 @@ export default function AddNote() {
 	// const router = useRouter();
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
-	const [succes, setSucces] = useState(false);
+	const [succes, setSucces] = useState(true);
 
 	const createNote = async (e) => {
 		e.preventDefault();
-		const res = await fetch('http://127.0.0.1:8090/api/collections/todo/records', {
+		const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/api/collections/todo/records`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -26,11 +24,12 @@ export default function AddNote() {
 		});
 		if (!res.ok) {
 			throw new Error(`HTTP ERROR: ${res.status}`);
+			setSucces(false);
 		}
 		setSucces(true);
 		toast.success('Note added successfully!',
 			{
-				duration: 5000,
+				duration: 2000,
 				className: 'font-bold'
 			}
 		);
@@ -43,12 +42,13 @@ export default function AddNote() {
 	console.log("Content: ", content);
 
 	return (
-		<div className='bg-[#98A0A9] rounded-lg py-4 text-center m-12 px-6'>
+		<div className='border-black border-2 rounded-lg py-4 text-center m-12 px-6'>
 		<form className="flex flex-col space-y-4"
 		onSubmit={createNote}>
+			{!succes && <p className="text-red-500">Failed to add note</p>}
 				<h1 className="font-bold">Title</h1>
 				<input
-					className='rounded-sm m-4 px-2 py-4'
+					className=' m-4 px-2 py-4 border-2 border-gray-400 rounded-lg'
 					type="text"
 					placeholder='Title'
 					value={title}
@@ -56,7 +56,7 @@ export default function AddNote() {
 				/>
 				<h1 className="font-bold">Content</h1>
 				<textarea
-				className='h-32 rounded-sm m-4 px-2 py-4'
+				className='m-4 px-2 py-4 border-2 border-gray-400 rounded-lg h-32'
 					placeholder='Content'
 					value={content}
 					onChange={(e) => setContent(e.target.value)}

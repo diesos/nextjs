@@ -1,15 +1,20 @@
 'use client';
+import dynamic from 'next/dynamic';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
-import styles from './Notes.module.css';
+// import styles from './Notes.module.css';
 import moment from 'moment';
 import deleteNote from './deleteNote';
 import { useState, useEffect } from 'react';
 import { SpotlightCard } from './Cards';
+import Loading from '../loading'
+import { TiDeleteOutline } from "react-icons/ti";
+
 
 
 async function getNotes() {
   try {
-    const res = await fetch('http://127.0.0.1:8090/api/collections/todo/records?page=1&perPage=30', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DB_HOST}/api/collections/todo/records?page=1&perPage=30`, {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
