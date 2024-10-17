@@ -2,11 +2,10 @@
 
 'use client';
 interface ShimmerButtonProps {
-  type: 'button' | 'submit' | 'reset'; // Ou tout autre type que tu veux accepter
-  onClick?: () => void; // Ajoute d'autres props que tu pourrais utiliser
+  type: 'button' | 'submit' | 'reset';
+  text?: string;
 }
-
-const ShimmerButton: React.FC<ShimmerButtonProps>  = ({type, onClick}) => {
+const ShimmerButton: React.FC<ShimmerButtonProps>  = ({type, text}) => {
   return (
     <div className="flex items-center justify-center">
       <button
@@ -80,7 +79,7 @@ const ShimmerButton: React.FC<ShimmerButtonProps>  = ({type, onClick}) => {
           }
         `}</style>
 
-        <span className="text-sm font-medium">{props}</span>
+        <span className="text-sm font-medium">{text}</span>
       </button>
     </div>
   );

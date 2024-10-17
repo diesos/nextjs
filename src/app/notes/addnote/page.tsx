@@ -64,7 +64,7 @@ export default function AddNote() {
 				/>
 			<ShimmerButton
 			type="submit"
-			props="Add"
+			text="Add"
 			/>
 			{/* <button className="rounded bg-blue-500 transition ease-out hover:bg-cyan-200 m-4 text-white font-bold px-2 py-4" type="submit">Add Note</button> */}
 		</form>
