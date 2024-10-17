@@ -1,8 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 'use client';
+interface ShimmerButtonProps {
+  type: 'button' | 'submit' | 'reset'; // Ou tout autre type que tu veux accepter
+  onClick?: () => void; // Ajoute d'autres props que tu pourrais utiliser
+}
 
-const ShimmerButton = ({props, type}) => {
+const ShimmerButton: React.FC<ShimmerButtonProps>  = ({type, onClick}) => {
   return (
     <div className="flex items-center justify-center">
       <button
