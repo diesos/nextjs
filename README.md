@@ -1,4 +1,4 @@
-# Todo List Project with Next.js, Tailwind CSS, and PocketBase
+# Todo List Project with Next.js + TypeScript, Tailwind CSS, and PocketBase
 
 This is a Todo List application developed using Next.js with Tailwind CSS for front-end styling and PocketBase for the backend API to handle CRUD operations. This project provides a modern and responsive interface for managing tasks efficiently.
 
