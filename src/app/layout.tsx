@@ -61,20 +61,10 @@ export default function RootLayout({
     <html lang="en">
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {/* <nav className="hidden sm:contents">
-        <ul  className="flex justify-center gap-6 py-4 rounded-lg bg-gray-300 my-4 mx-32 justify-items-center text-center text-black transition ease-in-out hover:text-gray-800 duration-200">
-          <li><a href="/">Home</a></li>
-          <li> | </li>
-          <li><a href="/notes">Notes</a></li>
-          <li> | </li>
-          <li><a href="/notes/addnote">Add Note</a></li>
-        </ul>
-      </nav> */}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <Dock position="top" items={items} />
       <Toaster position="top-right" />
-      <div className="mt-16 flex flex-col h-screen">
+      <div className="mt-16 flex flex-col h-auto">
         <div className="flex-grow">{children}</div>
 
         </div>
