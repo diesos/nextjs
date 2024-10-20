@@ -74,8 +74,9 @@ export default function RootLayout({
       </nav> */}
       <Dock position="top" items={items} />
       <Toaster position="top-right" />
-      <div className="mt-16">
-        {children}
+      <div className="mt-16 flex flex-col h-screen">
+        <div className="flex-grow">{children}</div>
+
         </div>
         <FooterThird />
       </body>
