@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-center">
       <div className="mb-36">
-        <div className="break-words mt-6  m-auto w-screen md:w-[90vh]">
+        <div className="break-words mt-6 m-auto w-screen md:w-[90vh]">
           <AnimatedGridPatternDemo />
           </div>
           <div className="mt-6 mb-6">
